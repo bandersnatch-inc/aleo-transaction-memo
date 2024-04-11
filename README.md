@@ -90,7 +90,8 @@ const memo = "This is a test."
 const transfer_fee = 0.1; // Aleo credits
 
 const encoded_memo = encode_string_to_u8s(memo, memo_max_length);
-const transfer_amount_microcredits = `${parseInt(transfer_amount*1_000)}u64`;
+const transfer_amount_microcredits = parseInt(transfer_amount*1_000);
+const transfer_amount_encoded = `${transfer_amount_microcredits}u64`;
 
 const transfer_tx_id = await programManager.execute({
   programName: `${program_id}.aleo`,
@@ -99,8 +100,8 @@ const transfer_tx_id = await programManager.execute({
   privateFee: false,
   inputs: [
     transfer_receiver,
-    transfer_amount_microcredits,
-    encoded_memo
+    transfer_amount_encoded,
+    encoded_memo,
   ]
 });
 
