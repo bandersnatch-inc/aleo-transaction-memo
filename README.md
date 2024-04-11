@@ -19,6 +19,7 @@ keyProvider.useCache = true;
 const networkClient = new AleoNetworkClient(nodeBaseUrl);
 const recordProvider = new NetworkRecordProvider(account, networkClient);
 const programManager = new ProgramManager(nodeBaseUrl, keyProvider, recordProvider);
+programManager.setAccount(account);
 ```
 
 Usefull functions for what comes next:
