@@ -84,11 +84,12 @@ Make a public transfer with memo:
 
 ```javascript
 const transfer_receiver = "aleo1x7udnshfsl28vh6k7mfr6u8z3uu5002f5zfmkgg3xphw3uc5dc8sagn08u";
-const transfer_amount = "1u64"; // Aleo Microcredits
+const transfer_amount = 0.5;  // Aleo credits
 const memo = "This is a test."
 const transfer_fee = 0.1; // Aleo credits
 
 const encoded_memo = encode_string_to_u8s(memo, memo_max_length);
+const transfer_amount_microcredits = `{parseInt(transfer_amount*1_000)}u64`;
 
 const transfer_tx_id = await programManager.execute({
   programName: `${program_id}.aleo`,
@@ -97,7 +98,7 @@ const transfer_tx_id = await programManager.execute({
   privateFee: false,
   inputs: [
     transfer_receiver,
-    transfer_amount,
+    transfer_amount_microcredits,
     encoded_memo
   ]
 });
