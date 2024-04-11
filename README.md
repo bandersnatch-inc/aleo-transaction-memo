@@ -24,19 +24,19 @@ const programManager = new ProgramManager(nodeBaseUrl, keyProvider, recordProvid
 Usefull functions for what comes next:
 
 ```javascript
-const get_memo_program_instructions = (program_id, memo_max_length) => (`
+const get_memo_program_instructions = (program_id, memo_max_length, function_name) => (`
   import credits.aleo;
   program ${program_id}.aleo;
   
-  function transfer_public_memo:
+  function ${function_name}:
       input r0 as address.public;
       input r1 as u64.public;
       input r2 as [u8; ${memo_max_length}u32].public;
       call credits.aleo/transfer_public r0 r1 into r3;
-      async transfer_public_memo r3 into r4;
-      output r4 as ${program_id}.aleo/transfer_public_memo.future;
+      async ${function_name} r3 into r4;
+      output r4 as ${program_id}.aleo/${function_name}.future;
   
-  finalize transfer_public_memo:
+  finalize ${function_name}:
       input r0 as credits.aleo/transfer_public.future;
       await r0;
 `);
@@ -70,6 +70,7 @@ Deploy custom program implementing memo and transfer_public call:
 ```javascript
 const deploy_fee = 2; // Aleo credits
 const program_id = "test_memo_program";
+const function_name = 
 const memo_max_length = 32;
 
 const program = get_memo_program_instructions(program_id, memo_max_length);
