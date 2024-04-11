@@ -1,7 +1,8 @@
 # aleo-transaction-memo
 
 This example shows a custom way to include a memo in an Aleo transaction using Aleo SDK.
-SDK imports and account config :
+
+SDK imports and account config:
 
 ```javascript
 import { Account, AleoKeyProvider, AleoNetworkClient, NetworkRecordProvider, ProgramManager } from '@aleohq/sdk';
