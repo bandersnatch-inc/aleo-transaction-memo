@@ -70,7 +70,7 @@ Deploy custom program implementing memo and transfer_public call:
 ```javascript
 const deploy_fee = 2; // Aleo credits
 const program_id = "test_memo_program";
-const function_name = 
+const function_name = "transfer_public_memo";
 const memo_max_length = 32;
 
 const program = get_memo_program_instructions(program_id, memo_max_length);
@@ -92,7 +92,7 @@ const encoded_memo = encode_string_to_u8s(memo, memo_max_length);
 
 const transfer_tx_id = await programManager.execute({
   programName: `${program_id}.aleo`,
-  functionName: "transfer_public_memo",
+  functionName: function_name,
   fee: transfer_fee,
   privateFee: false,
   inputs: [
