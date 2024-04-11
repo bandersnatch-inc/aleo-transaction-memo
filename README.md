@@ -69,7 +69,7 @@ const decode_u8s_to_string = (encoded_u8s) => {
 Deploy custom program implementing memo and transfer_public call:
 
 ```javascript
-const deploy_fee = 2; // Aleo credits
+const deploy_fee = 2.1; // Aleo credits
 const program_id = "test_memo_program";
 const function_name = "transfer_public_memo";
 const memo_max_length = 32;
