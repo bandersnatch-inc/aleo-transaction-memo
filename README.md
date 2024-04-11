@@ -75,10 +75,10 @@ const function_name = "transfer_public_memo";
 const memo_max_length = 32;
 
 const program = get_memo_program_instructions(program_id, memo_max_length, function_name);
-const tx_id = await programManager.deploy(program, deploy_fee);
+const deploy_tx_id = await programManager.deploy(program, deploy_fee);
 
-console.log(`Successfully deployed program: '${programId}.aleo'.`);
-console.log(`Transaction id: '${tx_id}'.`);
+console.log(`Successfully deployed program: '${program_id}.aleo'.`);
+console.log(`Transaction id: '${deploy_tx_id}'.`);
 ```
 
 Make a public transfer with memo:
