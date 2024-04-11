@@ -21,7 +21,7 @@ const programManager = new ProgramManager(nodeBaseUrl, keyProvider, recordProvid
 
 Usefull functions for what comes next:
 
-```
+```javascript
 const get_memo_program_instructions = (memo_max_length, program_id) => (`
   import credits.aleo;
   program ${program_id}.aleo;
