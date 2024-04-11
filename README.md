@@ -22,7 +22,7 @@ const programManager = new ProgramManager(nodeBaseUrl, keyProvider, recordProvid
 Usefull functions for what comes next:
 
 ```javascript
-const get_memo_program_instructions = (memo_max_length, program_id) => (`
+const get_memo_program_instructions = (program_id, memo_max_length) => (`
   import credits.aleo;
   program ${program_id}.aleo;
   
@@ -39,7 +39,7 @@ const get_memo_program_instructions = (memo_max_length, program_id) => (`
       await r0;
 `);
 
-const encode_memo_to_u8s = (str_to_encode, max_length) => {
+const encode_string_to_u8s = (str_to_encode, max_length) => {
   const missing_char_amount = max_length - str_to_encode.length;
   if(missing_char_amount < 0) {
     throw new Error("Memo is too long.");
@@ -53,7 +53,7 @@ const encode_memo_to_u8s = (str_to_encode, max_length) => {
   return encoded;
 };
 
-const decode_memo = (encodedArray) => {
+const decode_u8s_to_string = (encodedArray) => {
   const byteValues = encodedArray
     .map(encodedStr => parseInt(encodedStr.replace('u8', ''), 10))
     .filter(byte => byte !== 0);
@@ -66,10 +66,11 @@ const decode_memo = (encodedArray) => {
 Deploy custom program implementing memo and transfer_public call:
 
 ```javascript
-const deploy_fee = 2; // 1.8 Aleo credits
+const deploy_fee = 2; // Aleo credits
 const program_id = "test_memo_program";
+const memo_max_length = 32;
 
-const program = get_memo_program_instructions(32, program_id);
+const program = get_memo_program_instructions(program_id, memo_max_length);
 const tx_id = await programManager.deploy(program, deploy_fee);
 
 console.log(`Successfully deployed program: '${programId}.aleo'.`);
@@ -80,11 +81,11 @@ Make a public transfer with memo:
 
 ```
 const transfer_receiver = "aleo1x7udnshfsl28vh6k7mfr6u8z3uu5002f5zfmkgg3xphw3uc5dc8sagn08u";
-const transfer_amount = "1u64";
+const transfer_amount = "1u64";// Aleo Microcredits
 const memo = "This is a test."
-const transfer_fee = 0.1;
+const transfer_fee = 0.1; // Aleo credits
 
-const encoded_memo = encode_memo(memo);
+const encoded_memo = encode_string_to_u8s(memo, );
 
 const transfer_tx_id = await programManager.execute({
   programName: `${program_id}.aleo`,
