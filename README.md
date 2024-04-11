@@ -46,8 +46,8 @@ const encode_string_to_u8s = (str_to_encode, max_length) => {
   if(missing_char_amount < 0) {
     throw new Error("Memo is too long.");
   }
-  const textEncoder = new TextEncoder(); 
-  const uint8Array = textEncoder.encode(str_to_encode);
+  const text_encoder = new TextEncoder(); 
+  const uint8Array = text_encoder.encode(str_to_encode);
   const encoded = ([
     ...Array(missing_char_amount).fill(0), 
     ...uint8Array,
@@ -55,12 +55,12 @@ const encode_string_to_u8s = (str_to_encode, max_length) => {
   return encoded;
 };
 
-const decode_u8s_to_string = (encodedArray) => {
-  const byteValues = encodedArray
-    .map(encodedStr => parseInt(encodedStr.replace('u8', ''), 10))
+const decode_u8s_to_string = (encoded_u8s) => {
+  const byteValues = encoded_u8s
+    .map(encoded_u8 => parseInt(encoded_u8.slice(0,-2), 10))
     .filter(byte => byte !== 0);
-  const textDecoder = new TextDecoder();
-  const decoded = textDecoder.decode(new Uint8Array(byteValues));
+  const text_decoder = new TextDecoder();
+  const decoded = text_decoder.decode(new Uint8Array(byteValues));
   return decoded;
 };
 ```
