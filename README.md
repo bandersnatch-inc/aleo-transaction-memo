@@ -79,7 +79,7 @@ console.log(`Transaction id: '${tx_id}'.`);
 
 Make a public transfer with memo:
 
-```
+```javascript
 const transfer_receiver = "aleo1x7udnshfsl28vh6k7mfr6u8z3uu5002f5zfmkgg3xphw3uc5dc8sagn08u";
 const transfer_amount = "1u64";// Aleo Microcredits
 const memo = "This is a test."
