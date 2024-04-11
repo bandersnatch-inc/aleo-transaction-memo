@@ -22,7 +22,7 @@ const programManager = new ProgramManager(nodeBaseUrl, keyProvider, recordProvid
 programManager.setAccount(account);
 ```
 
-Usefull functions for what comes next:
+Functions for generating aleo instructions, encoding and decoding memo strings:
 
 ```javascript
 const get_memo_program_instructions = (program_id, memo_max_length, function_name) => (`
