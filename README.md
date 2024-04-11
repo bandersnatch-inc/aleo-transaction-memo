@@ -73,7 +73,7 @@ const program_id = "test_memo_program";
 const function_name = "transfer_public_memo";
 const memo_max_length = 32;
 
-const program = get_memo_program_instructions(program_id, memo_max_length);
+const program = get_memo_program_instructions(program_id, memo_max_length, function_name);
 const tx_id = await programManager.deploy(program, deploy_fee);
 
 console.log(`Successfully deployed program: '${programId}.aleo'.`);
